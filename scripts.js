@@ -88,23 +88,25 @@ function displayCupcakes(data){
 // this looks at the JSON of our collection, specifically each cupcake's value attribute, to return only the cupcakes whose tag list includes the correct tags for that category of cupcakes (when you choose chocolate, you will see all of the cupcakes that have a tag of chocolate in their tags property)
 $("#filter").change(function (){
     // get the currently selected option from the select drop down
-    let tag; // TO DO
+    let tag = $(this).val();
 
     // if the user selected "all", display all of the cupcakes from our global variable
     if(tag === "all"){
         // displays all of the cupcakes
-        // TO DO
+        displayCupcakes(cupcakesCollection);
 
         // enables the user to sort alphabetically again
-        // TO DO
+        $("#alpha").prop("disabled", false);
+        $("#zed").prop("disabled", false);
     }else{
         // store the cupcake objects with that tag to a new variable, this is the collection we'll display to the screen
-       // TO DO
+        let filteredCupcakes = cupcakesCollection.filter((cupcake) => cupcake.tags.includes(tag));
 
         // display the filtered array to the screen
-        // TO DO
+        displayCupcakes(filteredCupcakes);
 
         // disable the buttons to sort alphabetically for now. We could add this feature for filtered results later
-       // TO DO
+        $("#alpha").prop("disabled", true);
+        $("#zed").prop("disabled", true);
     }
 });
